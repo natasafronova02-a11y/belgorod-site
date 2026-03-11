@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Туристический сайт Белгорода</title>
+<style>
+body {
+  font-family: 'Arial', sans-serif;
+  margin:0;
+  background:#f2f2f2;
+}
+
+/* Слайд-шоу */
+header.slideshow {
+  position: relative;
+  height: 450px;
+  overflow: hidden;
+}
+
+.slides img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slides img.active {
+  opacity: 1;
+}
+
+/* Темная накладка для читаемости текста */
+header.slideshow::after {
+  content: "";
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.3);
+  z-index:1;
+}
+
+/* Текст поверх слайдов */
+.header-text {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  text-align:center;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  z-index:2;
+}
+.header-text h1 { font-size: 40px; margin:0; }
+.header-text p { font-size: 20px; margin-top:10px; }
+
+/* Навигация */
+nav{
+  background:#264653;
+  padding:10px;
+  text-align:center;
+}
+nav a{
+  color:white;
+  margin:10px;
+  text-decoration:none;
+  font-weight:bold;
+  transition: color 0.3s, transform 0.3s;
+}
+nav a:hover{
+  color:#f4a261;
+  transform: scale(1.1);
+}
+
+/* Контент */
+section{
+  padding:40px;
+  max-width:1200px;
+  margin:20px auto;
+}
+
+/* Карточки анимация */
+.card{
+  margin-bottom:20px;
+  padding:20px;
+  background:white;
+  border-radius:10px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity:0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
+}
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
+}
+@keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
+
+/* Футер */
+footer{
+  background:#264653;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:20px;
+}
+
+/* Горизонтальные слайдеры */
+.slider-section { margin-bottom:50px; }
+.slider-section h2 { margin-bottom:20px; }
+
+.slider-container {
+  position: relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+
+.slider-track {
+  display:flex;
+  transition: transform 0.5s ease;
+}
+
+.slide-card {
+  min-width: 220px;
+  height: 250px;
+  margin-right: 20px;
+  background:white;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  text-align:center;
+  padding:10px;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.slide-card img {
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:10px;
+}
+.slide-card h3 { margin:10px 0 0 0; font-size:16px; }
+
+/* Последняя карточка "Что ещё?" */
+.slide-card.more {
+  background:#2a9d8f;
+  color:white;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+}
+.slide-card.more a {
+  margin-top:10px;
+  color:white;
+  text-decoration:none;
+  padding:6px 12px;
+  border-radius:6px;
+  background:#f4a261;
+}
+
+/* Кнопки слайдера */
+.slider-container button.prev,
+.slider-container button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.3);
+  color:white;
+  border:none;
+  font-size:24px;
+  padding:10px;
+  cursor:pointer;
+  z-index:2;
+  border-radius:50%;
+}
+.slider-container button.prev { left:0; }
+.slider-container button.next { right:0; }
+
+/* Плавающая панель вертикально справа */
+.floating-bar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  z-index:1000;
+}
+.floating-bar .btn {
+  background: rgba(255,255,255,0.9);
+  color:#264653;
+  text-decoration:none;
+  font-weight:bold;
+  padding:12px 18px;
+  border-radius:8px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s, background 0.3s;
+}
+.floating-bar .btn:hover { transform: scale(1.05); background:#f4a261; color:white; }
+</style>
+</head>
+<body>
+
+<header class="slideshow">
+  <div class="slides">
+    <img src="images/belgorod1.jpg" class="slide active">
+    <img src="images/belgorod2.jpg" class="slide">
+    <img src="images/belgorod3.jpg" class="slide">
+    <img src="images/belgorod4.jpg" class="slide">
+    <img src="images/belgorod5.jpg" class="slide">
+    <img src="images/belgorod6.jpg" class="slide">
+  </div>
+  <div class="header-text">
+    <h1>Добро пожаловать в Белгород</h1>
+    <p>Откройте для себя лучшие места, парки и рестораны города</p>
+  </div>
+</header>
+
+<script>
+let slides = document.querySelectorAll('.slide');
+let current = 0;
+function nextSlide() {
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+}
+setInterval(nextSlide, 3000);
+</script>
+
+<nav>
+<a href="index.html">Главная</a>
+<a href="places.html">Достопримечательности</a>
+<a href="parks.html">Парки</a>
+<a href="food.html">Кафе и рестораны</a>
+<a href="contact.html">Контакты</a>
+</nav>
+
+<section>
+<div class="card">
+<h2>О городе</h2>
+<p>Белгород — город с богатой историей, зелёными парками и современными достопримечательностями. Здесь каждый турист найдёт что-то по душе: от прогулок по уютным аллеям до дегустации местной кухни.</p>
+</div>
+<div class="card">
+<h2>Что вас ждёт на сайте</h2>
+<ul>
+<li>Лучшие достопримечательности города</li>
+<li>Популярные кафе и рестораны</li>
+<li>Парки и зоны отдыха</li>
+<li>Актуальная информация для туристов</li>
+</ul>
+</div>
+</section>
+
+<!-- Слайдер достопримечательностей -->
+<section class="slider-section">
+  <h2>Достопримечательности</h2>
+  <div class="slider-container" id="places-slider">
+    <button class="prev">&#10094;</button>
+    <div class="slider-track">
+      <a href="places.html#sobornaya" class="slide-card"><img src="images/sobornaya.jpg"><h3>Соборная площадь</h3></a>
+      <a href="places.html#park" class="slide-card"><img src="images/park.jpg"><h3>Парк Победы</h3></a>
+      <a href="places.html#museum" class="slide-card"><img src="images/museum.jpg"><h3>Историко-краеведческий музей</h3></a>
+      <div class="slide-card more"><h3>Что ещё?</h3><a href="places.html">Все достопримечательности</a></div>
+    </div>
+    <button class="next">&#10095;</button>
+  </div>
+</section>
+
+<!-- Слайдер ресторанов -->
+<section class="slider-section">
+  <h2>Кафе и рестораны</h2>
+  <div class="slider-container" id="food-slider">
+    <button class="prev">&#10094;</button>
+    <div class="slider-track">
+      <a href="food.html#cafe1" class="slide-card"><img src="images/cafe1.jpg"><h3>Лес & лис</h3></a>
+      <a href="food.html#cafe2" class="slide-card"><img src="images/cafe2.jpg"><h3>Forest Grill</h3></a>
+      <a href="food.html#cafe3" class="slide-card"><img src="images/cafe3.jpg"><h3>Midiynoye Mesto</h3></a>
+      <a href="food.html#cafe4" class="slide-card"><img src="images/cafe4.jpg"><h3>ЕстьToday</h3></a>
+      <a href="food.html#cafe5" class="slide-card"><img src="images/cafe5.jpg"><h3>Ресторан-Бидон</h3></a>
+      <a href="food.html#cafe6" class="slide-card"><img src="images/cafe6.jpg"><h3>Хинкальная №1</h3></a>
+      <div class="slide-card more"><h3>Что ещё?</h3><a href="food.html">Все рестораны</a></div>
+    </div>
+    <button class="next">&#10095;</button>
+  </div>
+</section>
+
+<!-- Плавающая панель справа -->
+<div class="floating-bar">
+  <a href="contact.html" class="btn">Хочу отправиться</a>
+  <a href="food.html" class="btn">Где поесть</a>
+</div>
+
+<footer>
+<p>Туристический сайт города Белгорода</p>
+</footer>
+
+<script>
+function initSlider(sliderId){
+  const container = document.getElementById(sliderId);
+  const track = container.querySelector('.slider-track');
+  const prev = container.querySelector('.prev');
+  const next = container.querySelector('.next');
+  let index = 0;
+  const slides = track.children;
+  const visible = 3; // количество карточек одновременно
+
+  function update(){
+    const offset = -index*(slides[0].offsetWidth + 20);
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  prev.onclick = function(){ if(index>0){ index--; update(); } }
+  next.onclick = function(){ if(index<slides.length-visible){ index++; update(); } }
+}
+
+initSlider('places-slider');
+initSlider('food-slider');
+</script>
+</body>
+</html>

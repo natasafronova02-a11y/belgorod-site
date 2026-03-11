@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Контакты и карта Белгорода</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f2f2f2;}
+.hero{background-image:url("https://upload.wikimedia.org/wikipedia/commons/7/7c/Belgorod_city.jpg");
+height:300px;background-size:cover;background-position:center;display:flex;
+flex-direction:column;justify-content:center;align-items:center;color:white;
+text-align:center;font-size:24px;text-shadow:1px 1px 3px rgba(0,0,0,0.7);}
+.hero h2{animation:heroZoom 2s ease-out;}
+@keyframes heroZoom{from{transform:scale(0.8);opacity:0;}to{transform:scale(1);opacity:1;}}
+header{background:#2a9d8f;color:white;padding:20px;text-align:center;}
+nav{background:#264653;padding:10px;text-align:center;}
+nav a{color:white;margin:10px;text-decoration:none;font-weight:bold;transition:color 0.3s,transform 0.3s;}
+nav a:hover{color:#f4a261;transform:scale(1.1);}
+section{padding:40px;max-width:1000px;margin:20px auto;}
+.card{margin-bottom:20px;padding:20px;background:white;border-radius:10px;
+box-shadow:2px 2px 10px rgba(0,0,0,0.1);transition:transform 0.3s,box-shadow 0.3s;
+opacity:0;transform:translateY(20px);animation:fadeInUp 0.6s forwards;}
+.card:nth-child(1){animation-delay:0.2s;}
+.card:nth-child(2){animation-delay:0.4s;}
+.card:hover{transform:translateY(-10px);box-shadow:4px 4px 15px rgba(0,0,0,0.2);}
+@keyframes fadeInUp{to{opacity:1;transform:translateY(0);}}
+.map-container{text-align:center;margin-top:20px;}
+iframe{border:0;width:80%;height:450px;border-radius:10px;}
+footer{background:#264653;color:white;text-align:center;padding:20px;margin-top:20px;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Контакты и карта Белгорода</h1>
+</header>
+
+<div class="hero">
+<h2>Свяжитесь с нами</h2>
+<p>Туристическая информация Белгорода</p>
+</div>
+
+<nav>
+<a href="index.html">Главная</a>
+<a href="places.html">Достопримечательности</a>
+<a href="parks.html">Парки</a>
+<a href="food.html">Кафе и рестораны</a>
+<a href="contact.html">Контакты</a>
+</nav>
+
+<section>
+<div class="card">
+<h2>Контакты туристической информации</h2>
+<p>Адрес: г. Белгород, ул. Примерная, 1<br>Телефон: +7 (4722) 123-456<br>Email: info@belgorodtour.ru</p>
+</div>
+
+<div class="card">
+<h2>Карта города</h2>
+<div class="map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22944.8655091681!2d36.573671!3d50.597199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41277ed7e191c5b5%3A0x48f8f1e5d64f1d91!2sBelgorod!5e0!3m2!1sru!2sru!4v1689787367890!5m2!1sru!2sru" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</section>
+
+<footer>
+<p>Туристический сайт Белгорода</p>
+</footer>
+</body>
+</html>
